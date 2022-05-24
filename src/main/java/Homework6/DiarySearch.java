@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class DiarySearch extends BaseView {
-    public String numberOfAllDiaries;
 
     public DiarySearch(WebDriver driver) {
         super(driver);
@@ -18,18 +17,11 @@ public class DiarySearch extends BaseView {
     @FindBy(id = "form_search_list_submit")
     public WebElement searchButton;
 
-    @FindBy(id = "extend_search")
-    public WebElement extendSearchButton;
-
-    @FindBy(xpath = "//h1[contains(.,'Найдено')]/span")
-    public WebElement numberOfDiariesFound;
-
-    public String searchPeopleOnlineFromAllDiaries() {
+    public SuccessfulSearch searchPeopleOnline() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkBoxSearchOnline));
         checkBoxSearchOnline.click();
         searchButton.click();
         webDriverWait.until(ExpectedConditions.urlContains("ListSearchForm"));
-        numberOfAllDiaries = numberOfDiariesFound.getText();
-        return numberOfAllDiaries;
+        return new SuccessfulSearch(driver);
     }
 }

@@ -16,7 +16,7 @@ public class MainPage extends BaseView {
     @FindBy(xpath = "//div[@class='dropdown-block col-sm-6']/a[@href='/list/']")
     public WebElement allDiaries;
 
-    public DiarySearch clickToDropDownMenu() {
+    public DiarySearch clickToDropDownMenuToAllDiary() {
         dropCommon.click();
         allDiaries.click();
         return new DiarySearch(driver);

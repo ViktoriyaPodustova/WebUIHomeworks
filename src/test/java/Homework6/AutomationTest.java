@@ -8,10 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.lessThan;
 
@@ -36,9 +32,21 @@ public class AutomationTest {
     @Test
     void searchPeopleOnlineFromAllDiariesTest() {
         new MainPage(driver).
-                clickToDropDownMenu().
-                searchPeopleOnlineFromAllDiaries();
-        assertThat(Integer.parseInt(new DiarySearch(driver).searchPeopleOnlineFromAllDiaries()), lessThan(1000));
+                clickToDropDownMenuToAllDiary().
+                searchPeopleOnline().
+                amountSum();
+        assertThat(new SuccessfulSearch(driver).numberOfAllDiaries, lessThan(1568796));
+    }
+
+    @Test
+    void AdvancedDiarySearchTest() throws InterruptedException {
+        new MainPage(driver).
+                clickToDropDownMenuToAllDiary().
+                searchPeopleOnline().
+                advancedSearch.
+                advancedSearchFromOnline("Муж", "18", "30").
+                amountSum();
+        assertThat(new SuccessfulSearch(driver).numberOfAllDiaries, lessThan(600));
     }
 
     @AfterEach
