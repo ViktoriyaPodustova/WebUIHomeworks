@@ -1,13 +1,11 @@
 package Homework6;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.openqa.selenium.Cookie;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.lessThan;
 
@@ -43,10 +41,20 @@ public class AutomationTest {
         new MainPage(driver).
                 clickToDropDownMenuToAllDiary().
                 searchPeopleOnline().
-                advancedSearch.
-                advancedSearchFromOnline("Муж", "18", "30").
+                advancedSearch.advancedSearchFromOnline("Муж", "18", "30").
                 amountSum();
         assertThat(new SuccessfulSearch(driver).numberOfAllDiaries, lessThan(600));
+    }
+
+    @Test
+    void fromFilterGoToFirstDiaryAndReturnToMainPage() throws InterruptedException {
+        new MainPage(driver).
+                clickToDropDownMenuToAllDiary().
+                searchPeopleOnline().
+                advancedSearch.advancedSearchFromOnline("Муж", "18", "30").
+                listFindedDiaries.goToFirstNotPrivateDiary().
+                clickToMainPageButton();
+        Assertions.assertTrue(new MainPage(driver).dropCommon.isDisplayed());
     }
 
     @AfterEach

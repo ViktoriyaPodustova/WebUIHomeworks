@@ -7,6 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.List;
 
 public class AdvancedSearch extends BaseView {
+
     public AdvancedSearch(WebDriver driver) {
         super(driver);
     }
@@ -14,9 +15,6 @@ public class AdvancedSearch extends BaseView {
     public String searchResults;
     @FindBy(id = "extend_search")
     public WebElement extendSearchButton;
-
-    @FindBy(id = "listsearchform-sex")
-    public WebElement genderSelection;
 
     @FindBy(xpath = "//select[@name='ListSearchForm[sex]']/option")
     public List<WebElement> genderOption;
@@ -39,4 +37,6 @@ public class AdvancedSearch extends BaseView {
         Thread.sleep(5000);
         return new SuccessfulSearch(driver);
     }
+
+
 }
