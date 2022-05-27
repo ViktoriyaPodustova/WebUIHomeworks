@@ -1,5 +1,6 @@
 package Homework6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ public class DiaryPage extends BaseView {
     @FindBy(xpath = "//a[.='Главная страница']")
     public WebElement mainPageButton;
 
+    @Step("Нажать на кнопку 'Главная страница' ")
     public MainPage clickToMainPageButton() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(mainPageButton));
         mainPageButton.click();

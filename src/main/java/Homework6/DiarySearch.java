@@ -1,5 +1,6 @@
 package Homework6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -17,6 +18,7 @@ public class DiarySearch extends BaseView {
     @FindBy(id = "form_search_list_submit")
     public WebElement searchButton;
 
+    @Step("Нажать на чекбокс 'Искать тех, кто онлайн' и выполнить поиск по кнопке 'Найти' ")
     public SuccessfulSearch searchPeopleOnline() {
         webDriverWait.until(ExpectedConditions.elementToBeClickable(checkBoxSearchOnline));
         checkBoxSearchOnline.click();

@@ -1,5 +1,6 @@
 package Homework6;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -28,6 +29,7 @@ public class AdvancedSearch extends BaseView {
     @FindBy(id = "form_search_list_submit")
     public WebElement searchButton;
 
+    @Step("После поиска тех, кто онлайн нажать на кнопку 'Расширенный поиск' и произвести поиск по полу и возрасту")
     public SuccessfulSearch advancedSearchFromOnline(String gender, String ageFrom, String ageTo) throws InterruptedException {
         extendSearchButton.click();
         genderOption.stream().filter(g -> g.getText().contains(gender)).findFirst().get().click();
